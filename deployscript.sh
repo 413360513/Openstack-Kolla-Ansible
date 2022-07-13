@@ -32,6 +32,13 @@ pipelining=True
 forks=100
 EOF
 
+#Configuring Kolla globals.yaml
+
+sudo apt install net-tools
+
+#We are storing the ip of eth0 for further or future use.
+my_br_ip=$(ifconfig eth0 | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'  | cut -d' ' -f2)
+
 #Install kolla For Deployment
 
 git clone --branch master https://opendev.org/openstack/kolla-ansible
@@ -44,12 +51,6 @@ cp kolla-ansible/ansible/inventory/* .
 #Kolla passwords
 kolla-genpwd
 
-#Configuring Kolla globals.yaml
-
-sudo apt install net-tools
-
-#We are storing the ip of eth0 for further or future use.
-my_br_ip=$(ifconfig eth0 | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'  | cut -d' ' -f2)
 
 tee /etc/kolla/globals.yaml<<EOF
 ---
