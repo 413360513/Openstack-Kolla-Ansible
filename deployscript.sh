@@ -52,7 +52,7 @@ cp kolla-ansible/ansible/inventory/* .
 kolla-genpwd
 
 
-tee /etc/kolla/globals.yaml<<EOF
+tee /etc/kolla/globals.yml<<EOF
 ---
 workaround_ansible_issue_8743: yes
 kolla_base_distro: "ubuntu"
