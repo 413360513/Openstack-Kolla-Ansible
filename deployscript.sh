@@ -53,7 +53,7 @@ my_br_ip=$(ifconfig eth0 | egrep -o 'inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0
 
 tee /etc/kolla/globals.yaml<<EOF
 ---
-
+workaround_ansible_issue_8743: yes
 kolla_base_distro: "ubuntu"
 network_interface: "eth0"
 neutron_external_interface: "eth1"
@@ -74,3 +74,19 @@ pip install python-openstackclient -c https://releases.openstack.org/constraints
 kolla-ansible post-deploy
 . /etc/kolla/admin-openrc.sh
 /usr/local/share/kolla-ansible/init-runonce
+
+# changing virt_type in nova-compute ----> nova.conf
+sed -i 's/virt_type = kvm/virt_type = qemu/' /etc/kolla/nova-compute/nova.conf
+sudo docker restart nova_compute
+
+#Displaying message 
+echo 🙌 Successfully deployed
+
+
+#creating a VM
+source /etc/kolla/admin-openrc.sh
+
+
+
+# Displaying login password
+cat /etc/kolla/passwords.yml | grep keystone_admin_password
