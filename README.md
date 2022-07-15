@@ -6,7 +6,7 @@
 ---
 ### A video guide for deploying openstack-kolla-ansible
 [Video for deploying openstack-kolla-ansible](https://www.youtube.com/watch?v=b-XgSPuedro&list=LL&index=1)
-
+[My self guide video for beginners](https://youtu.be/AwFv0DWA8Qc) 
 ---
 
 ### Official documnetation of openstack/kolla-ansible repository
